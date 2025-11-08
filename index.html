@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Driven Carbon Credits for Indian Farms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #16a34a;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            display: flex;
+            align-items: center;
+            padding: 2rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: #0f172a;
+        }
+
+        .hero-text h2 {
+            font-size: 1.3rem;
+            color: #475569;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #16a34a;
+            border: 2px solid #16a34a;
+        }
+
+        .btn-secondary:hover {
+            background: #f0fdf4;
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .icon-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            background: #f0fdf4;
+            border-radius: 10px;
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #dc2626;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problem-card p {
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            background: white;
+        }
+
+        .solution-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid #bbf7d0;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(34, 197, 94, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            padding: 0.8rem 0;
+            color: #475569;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: #16a34a;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 2.5rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            color: #0f172a;
+        }
+
+        .step-card p {
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        /* Advantage Section */
+        .advantage-section {
+            background: white;
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .advantage-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .advantage-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .advantage-card p {
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 5%;
+            border-radius: 30px;
+            margin: 4rem 5%;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">CarbonAI</div>
+            <ul class="nav-links">
+                <li><a href="#problem">The Problem</a></li>
+                <li><a href="#solution">Our Solution</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#advantage">Advantages</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Democratizing Carbon Credits for Everyone</h1>
+                <h2>Using Artificial Intelligence to seamlessly register sustainable projects on the Indian Carbon Market, turning sustainable practices into tangible revenue.</h2>
+                <div class="cta-buttons">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe97YsE_4Mp49OkTlNH-eGu7b4jXxtUdmB4tCMAhvdyhBXeEA/viewform?usp=sharing&ouid=105395456520553253871" class="btn btn-primary">Get In Touch</a>
+                    <a href="#how-it-works" class="btn btn-secondary">Learn How It Works</a>
+                </div>
+            </div> 
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <h3 style="margin-bottom: 1rem; color: #0f172a;">AI-Powered Features</h3>
+                    <div class="icon-grid">
+                        <div class="icon-item">
+                            <div class="icon">AI</div>
+                            <span>Smart Analysis</span>
+                        </div>
+                        <div class="icon-item">
+                            <div class="icon">📄</div>
+                            <span>Auto PDD</span>
+                        </div>
+                        <div class="icon-item">
+                            <div class="icon">✓</div>
+                            <span>CCTS Ready</span>
+                        </div>
+                        <div class="icon-item">
+                            <div class="icon">⚡</div>
+                            <span>Fast Track</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem-section">
+        <div class="section-header">
+            <h2>The Problem</h2>
+            <p>For too long, the carbon market has been inaccessible to small and medium-sized farms. The process is bogged down by multiple challenges.</p>
+        </div>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <h3>📋 Complex Paperwork</h3>
+                <p>Lengthy and technical Project Design Documents (PDDs) that are difficult to complete without specialized knowledge.</p>
+            </div>
+            <div class="problem-card">
+                <h3>🔍 Opaque Processes</h3>
+                <p>Navigating the regulations of registries like Verra or India's own CCTS can be confusing without expert help.</p>
+            </div>
+            <div class="problem-card">
+                <h3>⏰ Lengthy Timelines</h3>
+                <p>Traditional registration and validation can take 12 to 18 months, delaying potential income for farmers.</p>
+            </div>
+            <div class="problem-card">
+                <h3>💰 High Costs</h3>
+                <p>Professional consultancy fees and validation costs make it financially unviable for smaller projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="solution-section">
+        <div class="section-header">
+            <h2>Our AI-Powered Solution</h2>
+            <p>We cut through the complexity. Our platform uses specialized AI to automate and guide you through the entire carbon credit registration process with the Indian Carbon Credit Trading Scheme (CCTS).</p>
+        </div>
+        <div class="solution-features">
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>AI for Project Onboarding</h3>
+                <ul class="feature-list">
+                    <li><strong>Intelligent Land Analysis:</strong> Upload satellite images or land data for instant feasibility assessment of carbon credit potential</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>AI for Paperwork & Documentation</h3>
+                <ul class="feature-list">
+                    <li><strong>Automated PDD Generator:</strong> Simple questionnaire about your farm practices automatically drafts your Project Design Document</li>
+                    <li><strong>Smart Methodology Matching:</strong> AI identifies the most suitable carbon sequestration methodology under CCTS and international standards</li>
+                    <li><strong>Document Checker:</strong> AI reviews documents for completeness and consistency, flagging errors before submission</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🇮🇳</div>
+                <h3>Streamlined CCTS Integration</h3>
+                <ul class="feature-list">
+                    <li>Built with the evolving Indian Carbon Market (ICM) in mind, ensuring compliance with Bureau of Energy Efficiency (BEE) regulations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <p>Three simple steps to transform your farm's sustainable practices into revenue</p>
+        </div>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Assess</h3>
+                <p>Sign up and use our AI tool for a preliminary land and practice assessment. Get instant feedback on your carbon credit potential.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Automate</h3>
+                <p>Answer our guided questionnaire. Our AI drafts your PDD and compiles all necessary documents automatically.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Submit</h3>
+                <p>We facilitate the connection with validators and help manage your application to the registry seamlessly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantage Section -->
+    <section id="advantage" class="advantage-section">
+        <div class="section-header">
+            <h2>The AI Advantage</h2>
+            <p>Experience the transformative power of artificial intelligence in carbon credit registration</p>
+        </div>
+        <div class="advantage-grid">
+            <div class="advantage-card">
+                <div class="advantage-icon">⚡</div>
+                <h3>Speed</h3>
+                <p>Reduce registration preparation time from months to weeks. Get to market faster and start earning sooner.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-icon">🎯</div>
+                <h3>Accuracy</h3>
+                <p>Minimize errors and rejections with AI-powered document checks. Increase your approval rate significantly.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-icon">🌾</div>
+                <h3>Accessibility</h3>
+                <p>Affordable, scalable solutions designed for small and medium farms, not just large corporations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <h2>Ready to Join the Carbon Revolution?</h2>
+        <p>Transform your sustainable farming practices into verified carbon credits today.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe97YsE_4Mp49OkTlNH-eGu7b4jXxtUdmB4tCMAhvdyhBXeEA/viewform?usp=sharing&ouid=105395456520553253871" class="btn btn-primary">Get In Touch</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 CarbonAI. Empowering Indian Farms Through AI-Driven Carbon Solutions.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.problem-card, .feature-card, .step-card, .advantage-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
